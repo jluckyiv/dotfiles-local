@@ -1,0 +1,93 @@
+" General enhancements
+Plug 'bling/vim-airline'                " Pretty status bar
+Plug 'editorconfig/editorconfig-vim'    " .editorconfig integration
+Plug 'godlygeek/tabular'                " Columnar layouts
+Plug 'janko-m/vim-test'                 " Omni test runner
+Plug 'tpope/vim-capslock'               " Software capslock with <c-g>c
+Plug 'tpope/vim-projectionist'          " Dependency for vim-rake and vim-ember
+Plug 'tpope/vim-unimpaired'             " Lots of cool tricks
+Plug 'tpope/vim-vinegar'                " Netrw enhancements
+
+" Colorschemes
+Plug 'sjl/badwolf'
+Plug 'morhetz/gruvbox'
+
+" Tmux
+Plug 'christoomey/vim-tmux-navigator'   " Use <c-h> between vim and tmux
+Plug 'christoomey/vim-tmux-runner'      " Use tmux for testing
+Plug 'tpope/vim-tbone'                  " Use :Tmux commands
+
+" Templating and syntax
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'chase/vim-ansible-yaml'
+Plug 'itspriddle/vim-marked'
+Plug 'mattn/emmet-vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-ragtag'
+
+" Ember
+Plug 'camthompson/vim-ember'
+
+" Elixir/Phoenix
+Plug 'elixir-lang/vim-elixir'          " Elixir Vim Plugin
+Plug 'avdgaag/vim-phoenix'             " Phoenix Vim plugin
+Plug 'jluckyiv/alchemist.vim'         " Elixir/Hex Vim plugin
+
+" Elm
+" Plug 'lambdatoast/elm.vim'
+Plug 'elmcast/elm-vim' 
+
+" Git
+Plug 'airblade/vim-gitgutter'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'                 " Dependency for gist-vim
+
+" Javascript
+Plug 'othree/yajs.vim'                 " Yet another JavaScript syntax
+
+" Ruby
+Plug 'ecomba/vim-ruby-refactoring'
+Plug 'sunaku/vim-ruby-minitest'         " Code completion
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-dispatch'               " Async compiling and testing
+Plug 'tpope/vim-rake'                   " Like vim-rails for ruby
+Plug 'tpope/vim-rbenv'
+
+" Custom textobjects
+" Plug 'kana/vim-textobj-entire'
+" Plug 'kana/vim-textobj-indent'
+" Plug 'kana/vim-textobj-line'
+" Plug 'kana/vim-textobj-syntax'
+" Plug 'kana/vim-textobj-user'
+" Plug 'nelstrom/vim-textobj-rubyblock'
+
+" Unused
+" Plug 'markcornick/vim-vagrant'
+" Plug 'benmills/vimux'
+" Plug 'davidoc/taskpaper.vim'
+" Plug 'elzr/vim-json'
+" Plug 'flazz/vim-colorschemes'
+" Plug 'heartsentwined/vim-emblem'
+" Plug 'hwartig/vim-seeing-is-believing'
+" Plug 'jgdavey/vim-turbux'
+" Plug 'kana/vim-vspec'                  " Vimscript testing
+" Plug 'kongo2002/vim-space'             " Use space to repeat commands
+" Plug 'nelstrom/vim-docopen'            " Opens docs in browser
+" Plug 'nelstrom/vim-markdown-folding'
+" Plug 'nelstrom/vim-qargs'              " Use Quickfix for command arguments
+" Plug 'nelstrom/vim-visual-star-search' " Use * and # to find vmode matches
+" Plug 'pangloss/vim-javascript'         " JavaScript syntax
+" Plug 'rizzatti/dash.vim'               " Not sure how useful this is
+" Plug 'rizzatti/funcoo.vim'             " Dependency for dash.vim
+" Plug 'rking/ag.vim'                    " Unnecessary with grepprg setting
+" Plug 't9md/vim-ruby-xmpfilter'         " Avdi
+" Plug 'tpope/vim-abolish'               " Crazy-complicated search and replace
+" Plug 'tpope/vim-characterize'          " Unicode character enhancement
+" Plug 'tpope/vim-commentary'            " Replaced with tComment
+" Plug 'tpope/vim-haml'
+" Plug 'tpope/vim-scriptease'            " To make Vim plugins
+" Plug 'tpope/vim-sensible'              " Sensible Vim defaults, unnecessary with dotfiles
+" Plug 'tpope/vim-sleuth'                " Automate tab settings based on file
+" Plug 'vim-scripts/prettyprint.vim'     " Pretty print vim variables
+" Plug 'vim-scripts/vimwiki'             " Personal wiki using Vim

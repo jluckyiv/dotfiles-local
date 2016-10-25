@@ -1,0 +1,420 @@
+" ===========================================
+" Start r00k preferences
+" ===========================================
+set nowrap
+set backupdir=~/.tmp
+set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
+set wmh=0
+set viminfo+=!
+set sts=2
+set ignorecase smartcase
+set relativenumber
+set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
+set bg=dark
+
+" Set the tag file search order
+" set tags=./tags;
+
+" Use _ as a word-separator
+" set iskeyword-=_
+
+" Fuzzy finder: ignore stuff that can't be opened, and generated files
+let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
+
+" Format xml files
+au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null" 
+
+command! Q q " Bind :Q to :q
+command! Qall qall 
+
+" Disable K looking stuff up
+noremap K <Nop>
+
+" What to do when I press 'wildchar'. Worth tweaking to see what feels right.
+set wildmode=list:full
+
+" (Hopefully) removes the delay when hitting esc in insert mode
+set noesckeys
+" ===========================================
+" End r00k preferences
+" ===========================================
+
+" ===========================================
+" Start nelstrom preferenes
+" ===========================================
+set history=5000
+set nojoinspaces
+set foldlevelstart=99
+set noswapfile
+if has('mouse')
+  set mouse=nv
+endif
+set hidden
+" ===========================================
+" End nelstrom preferences
+" ===========================================
+
+" ===========================================
+" Plugin configuration set by nelstrom
+" ===========================================
+" Plugin configuration {{{1
+" Vim-ruby {{{2
+let ruby_fold=1
+" Markdown {{{2
+let g:markdown_fenced_languages = ['css', 'erb=ruby', 'javascript', 'js=javascript', 'ruby', 'sass', 'xml']
+
+" Ctlr-P {{{2
+let g:ctrlp_jump_to_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore "**/*.pyc"
+      \ --ignore "**/*.swo"
+      \ --ignore "**/*.swp"
+      \ --ignore .DS_Store
+      \ --ignore .git
+      \ --ignore .hg
+      \ --ignore .svn
+      \ --ignore .vagrant
+      \ --ignore bower_components
+      \ --ignore node_modules
+      \ --ignore deps
+      \ --ignore _build
+      \ --ignore tmp
+      \ --ignore vcr_cassettes
+      \ --ignore elm-stuff
+      \ -g ""'
+
+
+" ===========================================
+" End nelstrom plugin configuration
+" ===========================================
+" vim-ruby-xmpfilter {{{2
+" autocmd FileType ruby nmap <buffer> <leader>gx <Plug>(xmpfilter-mark)
+" autocmd FileType ruby xmap <buffer> <leader>gx <Plug>(xmpfilter-mark)
+" autocmd FileType ruby imap <buffer> <leader>gx <Plug>(xmpfilter-mark)
+
+" ===========================================
+" Begin r00k filetypes
+" ===========================================
+augroup myfiletypes
+  " Clear old autocmds in group
+  autocmd!
+  " autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,eruby,yaml setlocal ai sw=2 sts=2 et list
+  autocmd FileType ruby,eruby,yaml setlocal path+=lib
+
+  autocmd FileType text setlocal ft=markdown ai sw=2 sts=2 et nocindent
+
+augroup END
+" ===========================================
+" End r00k filetypes
+" ===========================================
+
+" ===========================================
+" Start nelstrom mappings
+" ===========================================
+" Mappings {{{1
+" File opening {{{2
+cnoremap <expr> %%  getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
+
+noremap <leader>ew :e %%
+noremap <leader>es :sp %%
+noremap <leader>ev :vsp %%
+noremap <leader>et :tabe %%
+
+" Prompt to open file with same name, different extension
+noremap <leader>er :e <C-R>=expand("%:r")."."<CR>
+
+
+" Fix the & command in normal+visual modes {{{2
+nnoremap & :&&<Enter>
+xnoremap & :&&<Enter>
+
+" Strip trailing whitespace {{{2
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+nnoremap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+
+" Visual line repeat {{{2
+xnoremap . :normal .<CR>
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+" Experimental mappings {{{2
+nnoremap g" /\v<<C-r>"><CR>
+
+command! Path :call EchoPath()
+function! EchoPath()
+  echo join(split(&path, ","), "\n")
+endfunction
+
+command! TagFiles :call EchoTags()
+function! EchoTags()
+  echo join(split(&tags, ","), "\n")
+endfunction
+
+" ===========================================
+" End nelstrom mappings
+" ===========================================
+
+" ===========================================
+" Begin r00k mappings
+" ===========================================
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+noremap <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+noremap <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
+noremap <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
+
+" noremap <C-h> :nohl<cr>
+noremap <leader>/ :nohl<cr>
+inoremap <C-l> :<Space>
+noremap <C-s> <esc>:w<CR>
+inoremap <C-s> <esc>:w<CR>
+" noremap <C-t> <esc>:tabnew<CR>
+" noremap <C-x> <C-w>c
+noremap <C-n> :cn<CR>
+" noremap <C-p> :cp<CR>
+
+" Emacs-like beginning and end of line.
+inoremap <c-e> <c-o>$
+inoremap <c-a> <c-o>^
+
+" noremap <Leader>cc :Rjcollection client/
+" noremap <Leader>cj :Rjspec client/
+" noremap <Leader>cm :Rjmodel client/
+" noremap <Leader>ct :Rtemplate client/
+" noremap <Leader>cv :Rjview client/
+" noremap <Leader>gr :e ~/Dropbox/docs/journal<CR>
+" noremap <Leader>h :CommandT<CR>
+" noremap <Leader>j :CommandT app/assets/javascripts<cr>client/
+" noremap <Leader>o :w<cr>:call RunCurrentLineInTest()<CR>
+" noremap <Leader>pn :sp ~/Dropbox/work/thoughtbot/notes/project-notes.txt<cr>
+" noremap <Leader>rf :CommandTFlush<CR>:CommandT<CR>
+" noremap <Leader>sj :call OpenJasmineSpecInBrowser()<cr>
+nnoremap <Leader>bi :source ~/.vimrc.local<cr>
+noremap <Leader>ac :sp app/controllers/application_controller.rb<cr>
+noremap <Leader>bb :!bundle install<cr>
+noremap <Leader>cc :!cucumber --drb %<CR>
+noremap <Leader>cn :e ~/Dropbox/notes/coding-notes.txt<cr>
+noremap <Leader>co ggVG"*y
+noremap <Leader>cu :Tabularize /\|<CR>
+noremap <Leader>d odebugger<cr>puts 'debugger'<esc>:w<cr>
+noremap <Leader>dr :e ~/Dropbox<cr>
+noremap <Leader>ec :e ~/code/
+noremap <Leader>f :call OpenFactoryFile()<CR>
+noremap <Leader>fa :sp test/factories.rb<CR>
+noremap <Leader>fix :cnorenoremap % %<CR>
+noremap <Leader>gac :Gcommit -m -a ""<LEFT>
+noremap <Leader>gc :Gcommit -m ""<LEFT>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gw :!git add . && git commit -m 'WIP' && git push<cr>
+noremap <Leader>i mmgg=G`m<CR>
+" noremap <Leader>l oconsole.log 'debugging'<esc>:w<cr>
+noremap <Leader>m :Rmodel 
+noremap <Leader>nn :sp ~/Dropbox/notes/programming_notes.txt<cr>
+noremap <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+noremap <Leader>ra :%s/
+noremap <Leader>rd :!bundle exec rspec % --format documentation<CR>
+noremap <Leader>rs :vsp <C-r>#<cr><C-w>w
+noremap <Leader>rt q:?!ruby<cr><cr>
+noremap <Leader>rw :%s/\s\+$//<cr>:w<cr>
+noremap <Leader>rx :w<cr>:ruby %:p<CR>
+noremap <Leader>sc :sp db/schema.rb<cr>
+noremap <Leader>sg :sp<cr>:grep 
+noremap <Leader>sm :RSmodel
+noremap <Leader>sn :e ~/.vim/snippets/ruby.snippets<CR>
+noremap <Leader>so :so %<cr>
+noremap <Leader>sp yss<p>
+noremap <Leader>sq j<c-v>}klllcs<esc>:wq<cr>
+noremap <Leader>ss ds)i <esc>:w<cr>
+" noremap <Leader>st :!ruby -Itest % -n "//"<left><left>
+noremap <Leader>su :RSunittest 
+noremap <Leader>sv :RSview 
+" noremap <Leader>t :w<cr>:call RunCurrentSpecFile()<CR>
+" noremap <Leader>ta :!rake test<CR>
+noremap <Leader>u :Runittest<cr>
+noremap <Leader>vc :RVcontroller<cr>
+noremap <Leader>vf :RVfunctional<cr>
+noremap <Leader>vg :vsp<cr>:grep 
+noremap <Leader>vi :tabe ~/.vimrc.local<CR>
+noremap <Leader>vm :RVmodel<cr>
+noremap <Leader>vu :RVunittest<CR>
+noremap <Leader>vv :RVview<cr>
+noremap <Leader>w <C-w>w
+noremap <Leader>x :exec getline(".")<cr>
+noremap <Leader>y :!rspec --drb %<cr>
+vnoremap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+vnoremap <Leader>bed "td?describe<cr>obed<tab><esc>"tpkdd/end<cr>o<esc>:nohl<cr>
+
+" ===========================================
+" End r00k mappings
+" ===========================================
+
+" Merge a tab into a split in the previous window
+function! MergeTabs()
+  if tabpagenr() == 1
+    return
+  endif
+  let bufferName = bufname("%")
+  if tabpagenr("$") == tabpagenr()
+    close!
+  else
+    close!
+    tabprev
+  endif
+  split
+  execute "buffer " . bufferName
+endfunction
+
+nmap <C-W>u :call MergeTabs()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Test-running stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Now using vim-test
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+let test#strategy = "dispatch"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+inoremap <Tab> <C-P>
+
+" Let's be reasonable, shall we?
+nnoremap k gk
+nnoremap j gj
+
+" Don't add the comment prefix when I hit enter or o/O on a comment line.
+set formatoptions-=or
+
+" Don't wait so long for the next keypress (particularly in ambigious Leader
+" situations.
+set timeoutlen=500
+
+" Don't go past 100 chars on levelup:
+" autocmd BufNewFile,BufRead /Users/ben/code/levelup/*.rb set colorcolumn=100
+
+" Remove trailing whitespace on save for ruby files.
+au BufWritePre *.rb :%s/\s\+$//e
+
+function! OpenFactoryFile()
+  if filereadable("test/factories.rb")
+    execute ":sp test/factories.rb"
+  else
+    execute ":sp spec/factories.rb"
+  end
+endfunction
+
+" Set gutter background to black
+highlight SignColumn ctermbg=black
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE (thanks Gary Bernhardt)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <Leader>n :call RenameFile()<cr>
+
+" ========================================================================
+" End of things set by me.
+" ========================================================================
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+" ===========================================
+" Begin jluckyiv settings
+" ===========================================
+" handlebars
+" repeating from plugin just in case something is clobbering
+au  BufNewFile,BufRead *.handlebars,*.hbs set filetype=html.handlebars syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
+
+" Turn on spell-checking in markdown and text.
+au BufRead,BufNewFile *.md,*.txt setlocal spell
+" treat all text files as markdown
+au BufEnter *.txt setfiletype markdown
+
+" When loading text files, wrap them and don't split up words.
+au BufNewFile,BufRead *.txt setlocal wrap 
+au BufNewFile,BufRead *.txt setlocal lbr
+au BufNewFile,BufRead *.txt setlocal nolist " Don't display whitespace
+au FileType markdown setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=0
+
+" Better splits
+set splitbelow
+set splitright
+set colorcolumn=80
+
+" copy and paste
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR>
+
+" ragtag mappings
+inoremap <M-o>       <Esc>o
+" inoremap <C-j>       <Down>
+let g:ragtag_global_maps = 1
+
+" vim-marked
+let g:marked_app = "Marked 2"
+
+" mustache and handlebars
+let g:mustache_abbreviations = 1
+
+let g:gitgutter_max_signs = 600
+" RubyTest
+" let g:rubytest_in_quickfix = 1
+
+" seeing_is_believing
+augroup seeingIsBelievingSettings
+  autocmd!
+
+  autocmd FileType ruby nmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
+  autocmd FileType ruby xmap <buffer> <Enter> <Plug>(seeing-is-believing-mark-and-run)
+
+  autocmd FileType ruby nmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+  autocmd FileType ruby xmap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+  autocmd FileType ruby imap <buffer> <F4> <Plug>(seeing-is-believing-mark)
+
+  autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
+  autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing-is-believing-run)
+augroup END
+
+" autoformat elm
+let g:elm_format_autosave = 1
+
+set exrc
+set secure
+" colo badwolf
+colo gruvbox

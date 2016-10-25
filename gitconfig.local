@@ -1,0 +1,64 @@
+[user]
+  name = Jack Lucky
+  email = jack.lucky.iv@gmail.com 
+
+[github]
+  user = jluckyiv
+
+[alias]
+  aa      = add --all
+  br      = branch
+  ci      = commit
+  cim     = commit -m
+  cleanup = !git remote prune origin && git gc && git clean -df && git stash clear
+  co      = checkout
+  cob     = checkout -b
+  ctags   = !.git/hooks/ctags
+  dbi     = "!f() { name=${1-${PWD##*/}}; git init --bare $HOME/Dropbox/git/$name.git; }; f"
+  dbir    = "!f() { name=${1-${PWD##*/}}; git init --bare $HOME/Dropbox/git/$name.git; git remote add dropbox $HOME/Dropbox/git/$name.git; }; f"
+  dbp     = push dropbox
+  dbpa    = push --all dropbox
+  dbr     = "!f() { name=${1-${PWD##*/}}; git remote add dropbox $HOME/Dropbox/git/$name.git; }; f"
+  dump    = cat-file -p
+  hist    = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  lg      = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  pa      = push --all
+  st      = status
+  type    = cat-file -t
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+
+[color "diff"]
+  meta = yellow 
+
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim --noplugin
+
+[apply]
+  whitespace = nowarn
+
+[help]
+  autocorrect = 1
+
+[branch]
+  autosetupmerge = true
+  autosetuprebase = always
+
+[push]
+  default = current
+
+[rerere]
+  enabled = 1
+
+[merge]
+  ff = only
+
+[init]
+  templatedir = ~/.git_template
+
+[credential]
+  helper = osxkeychain
