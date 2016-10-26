@@ -17,20 +17,22 @@ Plug 'christoomey/vim-tmux-navigator'   " Use <c-h> between vim and tmux
 Plug 'christoomey/vim-tmux-runner'      " Use tmux for testing
 Plug 'tpope/vim-tbone'                  " Use :Tmux commands
 
+Plug 'sheerun/vim-polyglot'
+
 " Templating and syntax
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'chase/vim-ansible-yaml'
+" Plug 'chase/vim-ansible-yaml'
 Plug 'itspriddle/vim-marked'
 Plug 'mattn/emmet-vim'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'tpope/vim-markdown'
+" Plug 'mustache/vim-mustache-handlebars'
+" Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-ragtag'
 
 " Ember
 Plug 'camthompson/vim-ember'
 
 " Elixir/Phoenix
-Plug 'elixir-lang/vim-elixir'          " Elixir Vim Plugin
+" Plug 'elixir-lang/vim-elixir'          " Elixir Vim Plugin
 Plug 'avdgaag/vim-phoenix'             " Phoenix Vim plugin
 Plug 'jluckyiv/alchemist.vim'         " Elixir/Hex Vim plugin
 
@@ -49,7 +51,7 @@ Plug 'othree/yajs.vim'                 " Yet another JavaScript syntax
 " Ruby
 Plug 'ecomba/vim-ruby-refactoring'
 Plug 'sunaku/vim-ruby-minitest'         " Code completion
-Plug 'tpope/vim-cucumber'
+" Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-dispatch'               " Async compiling and testing
 Plug 'tpope/vim-rake'                   " Like vim-rails for ruby
 Plug 'tpope/vim-rbenv'
