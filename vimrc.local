@@ -1,19 +1,14 @@
 " ---------------------------
 " Appearance }}}1
 " ---------------------------
-if &t_Co > 2 || has("gui_running")
-  syntax on    " Switch syntax highlighting on, when the terminal has colors
-  set hlsearch " Also switch on highlighting the last used search pattern.
-endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 colo gruvbox
 highlight SignColumn ctermbg=black
 
 " ---------------------------
 " Global settings {{{1
 " ---------------------------
-" What to do when I press 'wildchar'. Worth tweaking to see what feels right.
-" set wildmode=list:full
-
 if has('mouse')
   set mouse=nv
 endif
@@ -21,26 +16,22 @@ endif
 " set tags=./tags;         " Set the tag file search order
 set background=dark      " Make it easier on the eyes
 set backupdir=~/.tmp     " Don't clutter my dirs with backup files
-set colorcolumn=80       " Mark the 80th column
+set completeopt=longest,menuone
 set directory=~/.tmp     " Don't clutter my dirs up with swp and tmp files
 set exrc                 " Load local .vimrc or .nvimrc
+set fillchars+=vert:\ 
 set foldlevelstart=99    " Start with all folds open
 set formatoptions-=or    " Don't add the comment prefix when I hit enter or o/O on a comment line.
 set gdefault             " Assume the /g flag on :s substitutions to replace all matches in a line
 set hidden               " Allow switching from a modified buffer without saving
 set history=5000         " Save lots of history
+set hlsearch             " Also switch on highlighting the last used search pattern.
 set ignorecase smartcase " Ignore case in searches, unless there's an uppercase latter
 set iskeyword-=_         " Use _ as a word-separator
-set nobackup             " Don't create backup files
 set noesckeys            " Recognize <esc> immediately
-set nojoinspaces         " Don't add two spaces after punctuation
-set noswapfile           " Don't create swap files
 set nowrap               " Don't wrap lines
 set relativenumber       " Use relative numbers
 set secure               " Prevent shell and write commands in local .vimrc
-set softtabstop=2        " Number of spaces a <Tab> counts for
-set splitbelow           " Open splits below current buffer
-set splitright           " Open splits on right of current buffer
 set timeoutlen=500       " Don't wait so long for the next keypress (particularly in ambigious leader situations.
 set viminfo+=!
 set winminheight=0       " Minimum height of out-of-focus window
@@ -132,15 +123,12 @@ xnoremap & :&&<Enter>
 
 " General {{{2
 cnoremap <expr> %%  getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
-inoremap <Tab> <c-P>
+
+inoremap <Tab> <c-p>
 inoremap <c-a> <c-o>^
 inoremap <c-e> <c-o>$
 
-nnoremap <silent> <leader>T :TestFile<cr>
-nnoremap <silent> <leader>a :TestSuite<cr>
-nnoremap <silent> <leader>g :TestVisit<cr>
-nnoremap <silent> <leader>l :TestLast<cr>
-nnoremap <silent> <leader>t :TestNearest<cr>
+nnoremap <silent> <Leader>T :TestFile<CR>
 nnoremap _$ :call Preserve("%s/\\s\\+$//e")<cr>
 nnoremap j gj
 nnoremap k gk
@@ -150,6 +138,7 @@ noremap <c-p> :cp<cr>
 noremap <c-t> <esc>:tabnew<cr>
 noremap <c-x> <c-w>c
 noremap <leader>$ :call Preserve("%s/\\s\\+$//e")<cr>
+noremap <leader>/ :nohl<cr>
 noremap <leader>bb :!bundle install<cr>
 noremap <leader>bi :tabe ~/.vimrc.bundles.local<cr>
 noremap <leader>bs :source ~/.vimrc.bundles.local<cr>
@@ -159,6 +148,11 @@ noremap <leader>cu :Tabularize /\|<cr>
 noremap <leader>dr :e ~/Dropbox<cr>
 noremap <leader>e :e <c-r>=expand("%:p:h") . '/'<cr>
 noremap <leader>ec :e ~/code/
+noremap <leader>er :e <c-r>=expand("%:r")."."<cr>
+noremap <leader>es :sp %%
+noremap <leader>et :tabe %%
+noremap <leader>ev :vsp %%
+noremap <leader>ew :e %%
 noremap <leader>fix :cnorenoremap % %<cr>
 noremap <leader>gac :Gcommit -m -a ""<left>
 noremap <leader>gc :Gcommit -m ""<left>
@@ -184,18 +178,10 @@ noremap <leader>vi :tabe ~/.vimrc.local<cr>
 noremap <leader>vs :source ~/.vimrc.local<cr>
 noremap <leader>w <c-w>w
 noremap <leader>x :exec getline(".")<cr>
-noremap <leader>/ :nohl<cr>
-noremap <leader>er :e <c-r>=expand("%:r")."."<cr>
-noremap <leader>es :sp %%
-noremap <leader>et :tabe %%
-noremap <leader>ev :vsp %%
-noremap <leader>ew :e %%
-
 vnoremap <c-c> :w !pbcopy<cr><cr>
 vnoremap <c-x> :!pbcopy<cr>
 vnoremap <leader>b :<c-u>!git blame <c-r>=expand("%:p") <cr> \| sed -n <c-r>=line("'<") <cr>,<c-r>=line("'>") <cr>p <cr>
 vnoremap <leader>bed "td?describe<cr>obed<tab><esc>"tpkdd/end<cr>o<esc>:nohl<cr>
-
 xnoremap . :normal .<cr>
 xnoremap @ :<c-u>call ExecuteMacroOverVisualRange()<cr>
 
