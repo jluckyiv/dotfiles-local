@@ -1,9 +1,10 @@
-alias a=ansible
-alias ap=ansible-playbook
-alias b=bower
-alias dc=docker-compose
+alias an=ansible
+alias anp=ansible-playbook
+alias bw=bower
 alias d=docker
+alias dc=docker-compose
 alias dm=docker-machine
+alias e=elm
 alias em=ember
 alias ex=elixir
 alias git=hub
@@ -11,8 +12,9 @@ alias r=rails
 alias rb=ruby
 alias so=source
 alias v=vagrant
-alias vup='vagrant up'
-alias vupvb='vagrant up --provider=virtualbox'
-alias vupdo='vagrant up --provider=digital_ocean'
 alias vdf='vagrant destroy -f'
-alias vi=vim
+alias vi=nvim
+alias vim=nvim
+alias vup='vagrant up'
+alias vupdo='vagrant up --provider=digital_ocean'
+alias vupvb='vagrant up --provider=virtualbox'
