@@ -1,5 +1,5 @@
 " General enhancements
-Plug 'bling/vim-airline'                " Pretty status bar
+Plug 'vim-airline/vim-airline'          " Pretty status bar
 Plug 'editorconfig/editorconfig-vim'    " .editorconfig integration
 Plug 'godlygeek/tabular'                " Columnar layouts
 Plug 'janko-m/vim-test'                 " Omni test runner

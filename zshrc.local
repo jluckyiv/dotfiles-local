@@ -87,3 +87,5 @@ export HOMEBREW_GITHUB_API_TOKEN=49cee2fe8dfa31d12dcf431566f63bce1eb0cfe0
 
 export MAILGUN_DOMAIN="https://api.mailgun.net/v3/sandbox548eefbee8b649bea25db78f7aad0de0.mailgun.org"
 export MAILGUN_API_KEY="key-35f68fa38db6c57257a3b945c73cf49c"
+
+export TERM="screen-256color"
