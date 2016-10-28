@@ -1,25 +1,22 @@
-#!/bin/sh
+#! /bin/sh
+
 if type nvim > /dev/null 2>&1; then
-  alias vi='nvim'
   alias vim='nvim'
+  alias vi='nvim'
 else
   alias vi='vim'
 fi
-alias an=ansible
-alias anp=ansible-playbook
-alias bw=bower
-alias d=docker
-alias dc=docker-compose
-alias dm=docker-machine
-alias e=elm
-alias em=ember
-alias ex=elixir
-alias git=hub
-alias r=rails
-alias rb=ruby
-alias so=source
-alias v=vagrant
-alias vdf='vagrant destroy -f'
-alias vup='vagrant up'
-alias vupdo='vagrant up --provider=digital_ocean'
-alias vupvb='vagrant up --provider=virtualbox'
+
+alias an='ansible'
+alias anp='ansible-playbook'
+alias bw='bower'
+alias d='docker'
+alias dc='docker-compose'
+alias dm='docker-machine'
+alias e='elm'
+alias em='ember'
+alias ex='elixir'
+alias git='hub'
+alias r='rails'
+alias rb='ruby'
+alias so='source'
