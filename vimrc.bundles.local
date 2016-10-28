@@ -1,7 +1,9 @@
 if has('nvim')
   Plug 'neomake/neomake'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
+Plug 'slashmili/alchemist.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'airblade/vim-gitgutter'
 Plug 'avdgaag/vim-phoenix'            " Phoenix Vim plugin
@@ -39,12 +41,14 @@ Plug 'vim-airline/vim-airline'        " Pretty status bar
 " Plug 'nelstrom/vim-textobj-rubyblock'
 
 " Unused
-" Plug 'benmills/vimux'
-" Plug 'davidoc/taskpaper.vim'
-" Plug 'elzr/vim-json'
-" Plug 'heartsentwined/vim-emblem'
-" Plug 'hwartig/vim-seeing-is-believing'
-" Plug 'jgdavey/vim-turbux'
+" Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+" Plug 'benmills/vimux'                  " vim tmux integration
+" Plug 'davidoc/taskpaper.vim'           " Not using taskpaper
+" Plug 'elixir-lang/vim-elixir'          " elixir.vim dependency
+" Plug 'elzr/vim-json'                   " Not using because of polyglot
+" Plug 'heartsentwined/vim-emblem'       " Not using ember or emblem
+" Plug 'hwartig/vim-seeing-is-believing' " Lots of problems with this plugin
+" Plug 'jgdavey/vim-turbux'              " vim tmux integration
 " Plug 'kana/vim-vspec'                  " Vimscript testing
 " Plug 'kongo2002/vim-space'             " Use space to repeat commands
 " Plug 'lambdatoast/elm.vim'             " Replaced with elmcast/elm-vim
@@ -57,6 +61,7 @@ Plug 'vim-airline/vim-airline'        " Pretty status bar
 " Plug 'rizzatti/funcoo.vim'             " Dependency for dash.vim
 " Plug 'rking/ag.vim'                    " Unnecessary with grepprg setting
 " Plug 't9md/vim-ruby-xmpfilter'         " Avdi
+" Plug 'thinca/vim-ref'                  " elixir.vim dependency
 " Plug 'tpope/vim-abolish'               " Crazy-complicated search and replace
 " Plug 'tpope/vim-characterize'          " Unicode character enhancement
 " Plug 'tpope/vim-commentary'            " Replaced with tComment
