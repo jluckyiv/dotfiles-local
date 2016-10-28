@@ -2,7 +2,6 @@
 " Appearance }}}1
 " ---------------------------
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
 colo gruvbox
 highlight SignColumn ctermbg=black
 
@@ -39,7 +38,6 @@ set winminheight=0       " Minimum height of out-of-focus window
 " ---------------------------
 " Plugin configuration {{{1
 " ---------------------------
-
 " neomake {{{2
 if exists(':Neomake')
   " Run NeoMake on read and write operations
@@ -50,11 +48,9 @@ if exists(':Neomake')
         \ "mode": "passive",
         \ "active_filetypes": [],
         \ "passive_filetypes": [] }
-
   let g:neomake_serialize = 1
   let g:neomake_serialize_abort_on_error = 1
 endif
-
 
 " elm autoformat {{{3
 let g:polyglot_disabled = ['elm']
@@ -115,7 +111,6 @@ endif
 " ---------------------------
 " Filetypes }}}1
 " ---------------------------
-
 augroup myfiletypes
   autocmd!
   autocmd FileType vim setl keywordprg=:help " Enable lookup in .vimrc
@@ -203,7 +198,6 @@ xnoremap @ :<c-u>call ExecuteMacroOverVisualRange()<cr>
 " ---------------------------
 " Functions {{{1
 " ---------------------------
-
 " Strip trailing whitespace {{{2
 function! Preserve(command)
   " Preparation: save last search, and cursor position.
