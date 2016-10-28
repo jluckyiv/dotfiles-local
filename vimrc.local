@@ -42,8 +42,8 @@ set winminheight=0       " Minimum height of out-of-focus window
 
 " elm autoformat {{{3
 let g:polyglot_disabled = ['elm']
-let g:elm_detailed_complete = 1
 let g:elm_format_autosave = 1
+let g:elm_detailed_complete = 1
 let g:elm_syntastic_show_warnings = 1
 
 " ctrl-p {{{2
@@ -90,7 +90,6 @@ let g:ragtag_global_maps = 1
 let ruby_fold=1
 
 " vim-test {{{2
-" suggested mappings (:help test)
 if has('nvim')
   let test#strategy = "neovim"
 else

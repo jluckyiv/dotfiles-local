@@ -13,6 +13,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'               " Dependency for gist-vim
 Plug 'morhetz/gruvbox'                " gruvbox
+Plug 'neomake/neomake'
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/badwolf'                    " colorscheme
 Plug 'sunaku/vim-ruby-minitest'       " Code completion
