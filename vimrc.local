@@ -1,7 +1,15 @@
 " ---------------------------
+" NeoVim specific settings }}}1
+" ---------------------------
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let g:python2_host_prog = '/usr/local/bin/python2'
+  let g:python3_host_prog = '/usr/local/bin/python3'
+endif
+
+" ---------------------------
 " Appearance }}}1
 " ---------------------------
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 colo gruvbox
 highlight SignColumn ctermbg=black
 
