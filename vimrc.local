@@ -123,10 +123,10 @@ augroup myfiletypes
   autocmd FileType elixir,ruby,eruby,yaml setlocal path+=lib
   autocmd FileType markdown,text setlocal wrap lbr nolist spell
   autocmd FileType markdown,text setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=0
+  autocmd BufReadPost,BufWritePost *.elm ElmMake
 
   " Remove trailing whitespace on save for ruby files.
   autocmd BufWritePre *.rb :%s/\s\+$//e
-
 augroup END
 
 " ---------------------------
