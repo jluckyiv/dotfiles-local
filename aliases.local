@@ -1,3 +1,10 @@
+#!/bin/sh
+if type nvim > /dev/null 2>&1; then
+  alias vi='nvim'
+  alias vim='nvim'
+else
+  alias vi='vim'
+fi
 alias an=ansible
 alias anp=ansible-playbook
 alias bw=bower
@@ -13,8 +20,6 @@ alias rb=ruby
 alias so=source
 alias v=vagrant
 alias vdf='vagrant destroy -f'
-alias vi=nvim
-alias vim=nvim
 alias vup='vagrant up'
 alias vupdo='vagrant up --provider=digital_ocean'
 alias vupvb='vagrant up --provider=virtualbox'
