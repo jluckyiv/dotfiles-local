@@ -12,8 +12,8 @@ ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="kphoen" # no rbenv info
 # ZSH_THEME="mortalscumbag" # no rbenv info
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="suvash"
 # ZSH_THEME="ys"
+ZSH_THEME="suvash"
 
 # Never know when you're gonna need to popd!
 setopt AUTO_PUSHD
@@ -54,38 +54,16 @@ stty stop undef
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #
-plugins=(brew bundler docker ember-cli gitfast node npm osx rails rbenv ruby sudo tmux vagrant)
+# plugins=(brew bundler docker ember-cli gitfast node npm osx rails rbenv ruby sudo tmux vagrant)
+plugins=(gitfast osx sudo tmux)
 
 source $ZSH/oh-my-zsh.sh
 
 # Source my custom files after oh-my-zsh so I can override things.
 # source $HOME/.dotfiles/zsh/aliases
 # source $HOME/.dotfiles/zsh/functions
+
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 export PATH="$PATH:/usr/local/bin/elixir"
-
-# GO
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export GOPATH=$HOME/code/go
-export PATH=$PATH:$GOPATH/bin
-
-# kiex
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
-
-# Vagrant
-export VAGRANT_DEFAULT_PROVIDER=virtualbox
-
-# Shaves about 0.5s off Rails boot time (when using perf patch). Taken from https://gist.github.com/1688857
-export RUBY_GC_MALLOC_LIMIT=59000000
-export RUBY_HEAP_FREE_MIN=500000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_HEAP_SLOTS_INCREMENT=1000000
-unset  RUBY_FREE_MIN
-unset  RUBY_HEAP_MIN_SLOTS
-
-export HOMEBREW_GITHUB_API_TOKEN=49cee2fe8dfa31d12dcf431566f63bce1eb0cfe0
-
-export MAILGUN_DOMAIN="https://api.mailgun.net/v3/sandbox548eefbee8b649bea25db78f7aad0de0.mailgun.org"
-export MAILGUN_API_KEY="key-35f68fa38db6c57257a3b945c73cf49c"
-
-export TERM="screen-256color"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
