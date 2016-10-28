@@ -40,6 +40,22 @@ set winminheight=0       " Minimum height of out-of-focus window
 " Plugin configuration {{{1
 " ---------------------------
 
+" neomake {{{2
+if exists(':Neomake')
+  " Run NeoMake on read and write operations
+  autocmd! BufReadPost,BufWritePost * Neomake
+
+  " Disable inherited syntastic
+  let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": [] }
+
+  let g:neomake_serialize = 1
+  let g:neomake_serialize_abort_on_error = 1
+endif
+
+
 " elm autoformat {{{3
 let g:polyglot_disabled = ['elm']
 let g:elm_format_autosave = 1
