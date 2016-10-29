@@ -3,9 +3,15 @@
 " ---------------------------
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  let g:python2_host_prog = '/usr/local/bin/python2'
+  let g:python_host_prog = '/usr/local/bin/python'
   let g:python3_host_prog = '/usr/local/bin/python3'
+  " http://mendelowski.com/elixir/2016/09/11/elixir-installation-guide.html
+  " alchemist for elixir files, buffer and ctags for the rest
+  let deoplete#tag#cache_limit_size = 5000000
   let g:deoplete#enable_at_startup = 1
+  let g:deoplete#sources = {}
+  let g:deoplete#sources._ = ['buffer', 'tag']
+  let g:deoplete#sources.elixir = ['alchemist']
 endif
 
 " ---------------------------
@@ -27,7 +33,7 @@ set backupdir=~/.tmp     " Don't clutter my dirs with backup files
 set completeopt=longest,menuone
 set directory=~/.tmp     " Don't clutter my dirs up with swp and tmp files
 set exrc                 " Load local .vimrc or .nvimrc
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 set foldlevelstart=99    " Start with all folds open
 set formatoptions-=or    " Don't add the comment prefix when I hit enter or o/O on a comment line.
 set gdefault             " Assume the /g flag on :s substitutions to replace all matches in a line
@@ -63,14 +69,14 @@ endif
 
 " elm autoformat {{{3
 let g:polyglot_disabled = ['elm']
-let g:elm_format_autosave = 1
 let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1
 let g:elm_syntastic_show_warnings = 1
 
 " ctrl-p {{{2
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore "**/*.pyc"
       \ --ignore "**/*.swo"
@@ -125,7 +131,7 @@ augroup myfiletypes
   autocmd FileType vim setl keywordprg=:help " Enable lookup in .vimrc
   autocmd FileType elixir,ruby,eruby,yaml setlocal autoindent shiftwidth=2 softtabstop=2 expandtab list
   autocmd FileType elixir,ruby,eruby,yaml setlocal path+=lib
-  autocmd FileType markdown,text setlocal wrap lbr nolist spell
+  autocmd FileType markdown,text setlocal lbr nolist nonumber spell wrap
   autocmd FileType markdown,text setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=0
   autocmd BufReadPost,BufWritePost *.elm ElmMake
 
