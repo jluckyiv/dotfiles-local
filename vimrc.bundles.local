@@ -3,6 +3,10 @@ if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
+if !has('nvim')
+  Plug 'tpope/vim-sensible'             " Sensible Vim defaults, unnecessary with dotfiles
+endif
+
 Plug 'slashmili/alchemist.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'airblade/vim-gitgutter'
@@ -26,7 +30,6 @@ Plug 'tpope/vim-capslock'             " Software capslock with <c-g>c
 Plug 'tpope/vim-dispatch'             " Async compiling and testing
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-sensible'             " Sensible Vim defaults, unnecessary with dotfiles
 Plug 'tpope/vim-tbone'                " Use :Tmux commands
 Plug 'tpope/vim-unimpaired'           " Lots of cool tricks
 Plug 'tpope/vim-vinegar'              " Netrw enhancements
