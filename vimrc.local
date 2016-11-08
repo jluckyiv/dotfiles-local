@@ -53,6 +53,9 @@ set winminheight=0       " Minimum height of out-of-focus window
 " ---------------------------
 " Plugin configuration {{{1
 " ---------------------------
+" vim-tmux-runner {{{2
+let g:VtrUseVtrMaps = 1
+
 " neomake {{{2
 if exists(':Neomake')
   " Run NeoMake on read and write operations
@@ -170,7 +173,6 @@ noremap <leader>bs :source ~/.vimrc.bundles.local<cr>
 noremap <leader>cc :!cucumber --drb %<cr>
 noremap <leader>co ggVG"*y
 noremap <leader>cu :Tabularize /\|<cr>
-noremap <leader>dr :e ~/Dropbox<cr>
 noremap <leader>e :e <c-r>=expand("%:p:h") . '/'<cr>
 noremap <leader>ec :e ~/code/
 noremap <leader>er :e <c-r>=expand("%:r")."."<cr>
