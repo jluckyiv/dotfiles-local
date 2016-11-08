@@ -18,7 +18,6 @@ Plug 'editorconfig/editorconfig-vim'  " .editorconfig integration
 Plug 'elmcast/elm-vim'
 Plug 'godlygeek/tabular'              " Columnar layouts
 Plug 'itspriddle/vim-marked'
-Plug 'jluckyiv/alchemist.vim'         " Elixir/Hex Vim plugin
 Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'               " Dependency for gist-vim
@@ -52,9 +51,9 @@ Plug 'vim-airline/vim-airline'        " Pretty status bar
 " Plug 'heartsentwined/vim-emblem'       " Not using ember or emblem
 " Plug 'hwartig/vim-seeing-is-believing' " Lots of problems with this plugin
 " Plug 'jgdavey/vim-turbux'              " vim tmux integration
+" Plug 'jluckyiv/alchemist.vim'         " Elixir/Hex Vim plugin
 " Plug 'kana/vim-vspec'                  " Vimscript testing
 " Plug 'kongo2002/vim-space'             " Use space to repeat commands
-" Plug 'lambdatoast/elm.vim'             " Replaced with elmcast/elm-vim
 " Plug 'markcornick/vim-vagrant'         " Not using vagrant right now
 " Plug 'nelstrom/vim-docopen'            " Opens docs in browser
 " Plug 'nelstrom/vim-markdown-folding'   " Wasn't using
