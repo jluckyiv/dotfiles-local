@@ -200,6 +200,7 @@ noremap <leader>sp yss<p>
 noremap <leader>sq j<c-v>}klllcs<esc>:wq<cr>
 noremap <leader>ss ds)i <esc>:w<cr>
 noremap <leader>v :vnew <c-r>=expand("%:p:h") . '/'<cr>
+noremap <leader>vor :VtrOpenRunner {'orientation': 'h', 'percentage': 42, 'cmd': 'elm-test'}<cr>
 noremap <leader>vg :vsp<cr>:grep
 noremap <leader>vi :tabe ~/.vimrc.local<cr>
 noremap <leader>vs :source ~/.vimrc.local<cr>
