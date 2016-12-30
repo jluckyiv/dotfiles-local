@@ -1,6 +1,6 @@
 # oh-my-zsh discourages putting PATH variables here
 
-[[ -f ~/.zshenv.secret ]] && source ~/.zshenv.secret
+[[ -f $HOME/.zshenv.secret ]] && source $HOME/.zshenv.secret
 
 export RUBY_GC_MALLOC_LIMIT=59000000
 export RUBY_HEAP_FREE_MIN=500000
