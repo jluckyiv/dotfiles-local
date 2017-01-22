@@ -5,18 +5,12 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let g:python_host_prog = '/usr/local/bin/python'
   let g:python3_host_prog = '/usr/local/bin/python3'
-  " http://mendelowski.com/elixir/2016/09/11/elixir-installation-guide.html
-  " alchemist for elixir files, buffer and ctags for the rest
-  let deoplete#tag#cache_limit_size = 5000000
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#sources = {}
-  let g:deoplete#sources._ = ['buffer', 'tag']
-  let g:deoplete#sources.elixir = ['alchemist']
 endif
 
 " ---------------------------
 " Appearance }}}1
 " ---------------------------
+syntax enable
 colo gruvbox
 highlight SignColumn ctermbg=black
 
@@ -32,6 +26,7 @@ set background=dark      " Make it easier on the eyes
 set backupdir=~/.tmp     " Don't clutter my dirs with backup files
 set completeopt=longest,menuone
 set directory=~/.tmp     " Don't clutter my dirs up with swp and tmp files
+set encoding=utf-8
 set exrc                 " Load local .vimrc or .nvimrc
 set fillchars+=vert:\
 set foldlevelstart=99    " Start with all folds open
@@ -47,29 +42,13 @@ set nowrap               " Don't wrap lines
 set relativenumber       " Use relative numbers
 set secure               " Prevent shell and write commands in local .vimrc
 set timeoutlen=500       " Don't wait so long for the next keypress (particularly in ambigious leader situations.
+set title
 set viminfo+=!
 set winminheight=0       " Minimum height of out-of-focus window
 
 " ---------------------------
 " Plugin configuration {{{1
 " ---------------------------
-" vim-tmux-runner {{{2
-let g:VtrUseVtrMaps = 1
-
-" neomake {{{2
-if exists(':Neomake')
-  " Run NeoMake on read and write operations
-  autocmd! BufReadPost,BufWritePost * Neomake
-
-  " Disable inherited syntastic
-  let g:syntastic_mode_map = {
-        \ "mode": "passive",
-        \ "active_filetypes": [],
-        \ "passive_filetypes": [] }
-  let g:neomake_serialize = 1
-  let g:neomake_serialize_abort_on_error = 1
-endif
-
 " elm autoformat {{{3
 let g:polyglot_disabled = ['elm']
 let g:elm_detailed_complete = 1
@@ -98,9 +77,6 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore vcr_cassettes
       \ -g ""'
 
-" gitgutter {{{2
-let g:gitgutter_max_signs = 600
-
 " syntastic {{{2
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -110,14 +86,8 @@ let g:airline#extensions#syntastic#enabled = 0
 " vim-markdown {{{2
 let g:markdown_fenced_languages = ['css', 'elm', 'elixir', 'eex=elixir', 'erb=ruby', 'javascript', 'js=javascript', 'ruby', 'sass', 'xml']
 
-" vim-marked {{{2
-let g:marked_app = "Marked 2"
-
 " vim-ragtag {{{2
 let g:ragtag_global_maps = 1
-
-" vim-ruby {{{2
-let ruby_fold=1
 
 " vim-test {{{2
 if has('nvim')
@@ -132,15 +102,18 @@ endif
 augroup myfiletypes
   autocmd!
   autocmd FileType vim setl keywordprg=:help " Enable lookup in .vimrc
-  autocmd FileType elixir,ruby,eruby,yaml setlocal autoindent shiftwidth=2 softtabstop=2 expandtab list
-  autocmd FileType elixir,ruby,eruby,yaml setlocal path+=lib
+
   autocmd FileType markdown,text setlocal lbr nolist nonumber spell wrap
   autocmd FileType markdown,text setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=0
+
+  " Remove trailing whitespace on save for ruby files.
+  autocmd BufWritePre *.rb,*.ex,*.exs :%s/\s\+$//e
+  autocmd FileType elixir,ruby,eruby,yaml setlocal autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab list
+  autocmd FileType elixir,ruby,eruby,yaml setlocal path+=lib
+
   autocmd FileType elm setlocal softtabstop=4 tabstop=4 shiftwidth=4 expandtab
   autocmd BufReadPost,BufWritePost *.elm ElmMake
 
-  " Remove trailing whitespace on save for ruby files.
-  autocmd BufWritePre *.rb :%s/\s\+$//e
 augroup END
 
 " ---------------------------

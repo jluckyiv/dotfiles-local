@@ -1,34 +1,90 @@
-if has('nvim')
-  Plug 'neomake/neomake'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
-
 if !has('nvim')
   Plug 'tpope/vim-sensible'             " Sensible Vim defaults, unnecessary with dotfiles
 endif
 
-Plug 'slashmili/alchemist.vim'
+if has('nvim')
+
+  Plug 'neomake/neomake'
+  " Run NeoMake on read and write operations
+  autocmd! BufReadPost,BufWritePost * Neomake
+  " Disable inherited syntastic
+  let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": [] }
+  let g:neomake_serialize = 1
+  let g:neomake_serialize_abort_on_error = 1
+  let g:neomake_markdown_enabled_makers = []
+  Plug 'neomake/neomake'
+  " Run Neomake when I save any buffer
+  augroup neomake
+    autocmd! BufWritePost * Neomake
+  augroup END
+  " Don't tell me to use smartquotes in markdown ok?
+  let g:neomake_markdown_enabled_makers = []
+
+  " Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
+  let g:neomake_elixir_enabled_makers = ['mycredo']
+  function! NeomakeCredoErrorType(entry)
+    if a:entry.type ==# 'F'      " Refactoring opportunities
+      let l:type = 'W'
+    elseif a:entry.type ==# 'D'  " Software design suggestions
+      let l:type = 'I'
+    elseif a:entry.type ==# 'W'  " Warnings
+      let l:type = 'W'
+    elseif a:entry.type ==# 'R'  " Readability suggestions
+      let l:type = 'I'
+    elseif a:entry.type ==# 'C'  " Convention violation
+      let l:type = 'W'
+    else
+      let l:type = 'M'           " Everything else is a message
+    endif
+    let a:entry.type = l:type
+  endfunction
+
+  let g:neomake_elixir_mycredo_maker = {
+        \ 'exe': 'mix',
+        \ 'args': ['credo', 'list', '%:p', '--strict', '--format=oneline'],
+        \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
+        \ 'postprocess': function('NeomakeCredoErrorType')
+        \ }
+
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " http://mendelowski.com/elixir/2016/09/11/elixir-installation-guide.html
+  " alchemist for elixir files, buffer and ctags for the rest
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#sources = {}
+  let g:deoplete#sources._ = ['buffer', 'tag']
+  let g:deoplete#sources.elixir = ['alchemist']
+  let deoplete#tag#cache_limit_size = 5000000
+  " https://www.dailydrip.com/topics/elixir/drips/neovim-for-elixir
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+endif
+
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'airblade/vim-gitgutter'
-Plug 'avdgaag/vim-phoenix'            " Phoenix Vim plugin
+let g:gitgutter_max_signs = 600
+Plug 'c-brenn/phoenix.vim'
 Plug 'christoomey/vim-tmux-navigator' " Use <c-h> between vim and tmux
 Plug 'christoomey/vim-tmux-runner'    " Use tmux for testing
-Plug 'ecomba/vim-ruby-refactoring'
+let g:VtrUseVtrMaps = 1
 Plug 'editorconfig/editorconfig-vim'  " .editorconfig integration
 Plug 'elmcast/elm-vim'
 Plug 'godlygeek/tabular'              " Columnar layouts
 Plug 'itspriddle/vim-marked'
+let g:marked_app = "Marked 2"
 Plug 'mattn/emmet-vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'               " Dependency for gist-vim
 Plug 'morhetz/gruvbox'                " gruvbox
 Plug 'sheerun/vim-polyglot'
 Plug 'sjl/badwolf'                    " colorscheme
-Plug 'sunaku/vim-ruby-minitest'       " Code completion
+Plug 'slashmili/alchemist.vim'
+let g:alchemist_tag_disable = 1
+Plug 'tomasr/molokai'
 Plug 'tpope/vim-capslock'             " Software capslock with <c-g>c
 Plug 'tpope/vim-dispatch'             " Async compiling and testing
 Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-tbone'                " Use :Tmux commands
 Plug 'tpope/vim-unimpaired'           " Lots of cool tricks
 Plug 'tpope/vim-vinegar'              " Netrw enhancements
@@ -46,6 +102,7 @@ Plug 'vim-airline/vim-airline'        " Pretty status bar
 " Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 " Plug 'benmills/vimux'                  " vim tmux integration
 " Plug 'davidoc/taskpaper.vim'           " Not using taskpaper
+" Plug 'ecomba/vim-ruby-refactoring'
 " Plug 'elixir-lang/vim-elixir'          " elixir.vim dependency
 " Plug 'elzr/vim-json'                   " Not using because of polyglot
 " Plug 'heartsentwined/vim-emblem'       " Not using ember or emblem
@@ -62,12 +119,14 @@ Plug 'vim-airline/vim-airline'        " Pretty status bar
 " Plug 'rizzatti/dash.vim'               " Not sure how useful this is
 " Plug 'rizzatti/funcoo.vim'             " Dependency for dash.vim
 " Plug 'rking/ag.vim'                    " Unnecessary with grepprg setting
+" Plug 'sunaku/vim-ruby-minitest'       " Code completion
 " Plug 't9md/vim-ruby-xmpfilter'         " Avdi
 " Plug 'thinca/vim-ref'                  " elixir.vim dependency
 " Plug 'tpope/vim-abolish'               " Crazy-complicated search and replace
 " Plug 'tpope/vim-characterize'          " Unicode character enhancement
 " Plug 'tpope/vim-commentary'            " Replaced with tComment
 " Plug 'tpope/vim-haml'                  " Stopped using Haml
+" Plug 'tpope/vim-rbenv'
 " Plug 'tpope/vim-scriptease'            " To make Vim plugins
 " Plug 'tpope/vim-sleuth'                " Automate tab settings based on file
 " Plug 'vim-scripts/prettyprint.vim'     " Pretty print vim variables
