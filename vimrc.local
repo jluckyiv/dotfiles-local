@@ -104,7 +104,7 @@ augroup myfiletypes
   autocmd FileType vim setl keywordprg=:help " Enable lookup in .vimrc
 
   autocmd FileType markdown,text setlocal lbr nolist nonumber spell wrap
-  autocmd FileType markdown,text setlocal softtabstop=4 tabstop=4 shiftwidth=4 textwidth=0
+  autocmd FileType markdown,text setlocal sts=4 ts=4 sw=4 textwidth=0
 
   " Remove trailing whitespace on save for ruby files.
   autocmd BufWritePre *.rb,*.ex,*.exs :%s/\s\+$//e
