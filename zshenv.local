@@ -11,3 +11,5 @@ unset  RUBY_HEAP_MIN_SLOTS
 
 export TERM="screen-256color"
 export EDITOR="nvim"
+
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
