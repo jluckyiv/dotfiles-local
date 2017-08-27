@@ -71,6 +71,7 @@ let g:VtrUseVtrMaps = 1
 Plug 'editorconfig/editorconfig-vim'  " .editorconfig integration
 Plug 'elmcast/elm-vim'
 Plug 'godlygeek/tabular'              " Columnar layouts
+Plug 'hashivim/vim-vagrant'
 Plug 'itspriddle/vim-marked'
 let g:marked_app = "Marked 2"
 Plug 'mattn/emmet-vim'
@@ -111,7 +112,6 @@ Plug 'vim-airline/vim-airline'        " Pretty status bar
 " Plug 'jluckyiv/alchemist.vim'         " Elixir/Hex Vim plugin
 " Plug 'kana/vim-vspec'                  " Vimscript testing
 " Plug 'kongo2002/vim-space'             " Use space to repeat commands
-" Plug 'markcornick/vim-vagrant'         " Not using vagrant right now
 " Plug 'nelstrom/vim-docopen'            " Opens docs in browser
 " Plug 'nelstrom/vim-markdown-folding'   " Wasn't using
 " Plug 'nelstrom/vim-qargs'              " Use Quickfix for command arguments
