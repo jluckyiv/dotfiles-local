@@ -65,6 +65,5 @@ source $ZSH/oh-my-zsh.sh
 # source $HOME/.dotfiles/zsh/aliases
 # source $HOME/.dotfiles/zsh/functions
 
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
