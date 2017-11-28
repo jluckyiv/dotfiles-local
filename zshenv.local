@@ -9,7 +9,11 @@ export RUBY_HEAP_SLOTS_INCREMENT=1000000
 unset  RUBY_FREE_MIN
 unset  RUBY_HEAP_MIN_SLOTS
 
-export TERM="screen-256color"
-export EDITOR="nvim"
+export VISUAL='nvim'
+export EDITOR=$VISUAL
+export VIMCONFIG=~/.config/nvim
+export VIMDATA=~/.local/share/nvim
+# export VIMCONFIG=~/.vim
+# export VIMDATA=~/.vim
 
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
