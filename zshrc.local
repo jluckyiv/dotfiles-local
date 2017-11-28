@@ -57,7 +57,7 @@ stty stop undef
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #
 # plugins=(brew bundler docker ember-cli gitfast node npm osx rails rbenv ruby sudo tmux vagrant)
-plugins=(gitfast osx sudo tmux)
+plugins=(gitfast osx sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -65,5 +65,11 @@ source $ZSH/oh-my-zsh.sh
 # source $HOME/.dotfiles/zsh/aliases
 # source $HOME/.dotfiles/zsh/functions
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+source /usr/local/opt/asdf/asdf.sh
+
+PATH=$PATH:/Users/jluckyiv/.local/bin
+
+if [[ "$TERM" != "screen-256color" ]]
+then
+  tmux attach-session -t "$USER" || tmux new-session -s "$USER"
+fi
