@@ -65,11 +65,8 @@ source $ZSH/oh-my-zsh.sh
 # source $HOME/.dotfiles/zsh/aliases
 # source $HOME/.dotfiles/zsh/functions
 
-source /usr/local/opt/asdf/asdf.sh
-
 PATH=$PATH:/Users/jluckyiv/.local/bin
 
-if [[ "$TERM" != "screen-256color" ]]
-then
-  tmux attach-session -t "$USER" || tmux new-session -s "$USER"
-fi
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
