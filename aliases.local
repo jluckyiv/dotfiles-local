@@ -1,11 +1,29 @@
 #! /bin/sh
 
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+  alias vi='nvim'
+else
+  alias vi='vim'
+fi
+
 alias an='ansible'
 alias anp='ansible-playbook'
 alias bw='bower'
 alias d='docker'
 alias dc='docker-compose'
+alias dcfg='docker config'
+alias dchk='docker checkpoint'
+alias dcon='docker container'
+alias dimg='docker image'
 alias dm='docker-machine'
+alias dnet='docker network'
+alias dnod='docker node'
+alias docd='dockerd'
+alias dplg='docker plugin'
+alias dsec='docker secret'
+alias dsys='docker system'
+alias dvol='docker volume'
 alias e='elm'
 alias em='ember'
 alias ex='elixir'
@@ -13,8 +31,3 @@ alias git='hub'
 alias r='rails'
 alias rb='ruby'
 alias so='source'
-alias tls='tmux list-sessions'
-alias ts='tmux new-session -s'
-alias v='nvim'
-alias vi='nvim'
-alias vim='nvim'
