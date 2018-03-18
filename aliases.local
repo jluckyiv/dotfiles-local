@@ -15,6 +15,7 @@ alias dc='docker-compose'
 alias dcfg='docker config'
 alias dchk='docker checkpoint'
 alias dcon='docker container'
+alias deletelocalsnapshots="sudo tmutil listlocalsnapshots /Volumes/ | grep -o '\d\d\d\d-\d\d-\d\d-\d\d\d\d\d\d' | xargs -n 1 sudo tmutil deletelocalsnapshots"
 alias dimg='docker image'
 alias dm='docker-machine'
 alias dnet='docker network'
