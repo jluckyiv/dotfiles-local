@@ -1,4 +1,5 @@
 scriptencoding utf-8
+let g:python3_host_prog = '/usr/local/bin/python3'
 " Based on Josh Adams's vim configuration (http://github.com/knewter/dotfiles)
 
 " Table of Contents
@@ -107,6 +108,10 @@ Plug 'slashmili/alchemist.vim'
 """ problems, no clue what's up there...
   Plug 'powerman/vim-plugin-AnsiEsc'
 
+Plug 'mhinz/vim-mix-format'
+  " let g:mix_format_on_save = 1
+  " too slow right now
+
 " Phoenix
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
@@ -187,7 +192,7 @@ Plug 'janko-m/vim-test'                " Run tests with varying granularity
   nmap <silent> <leader>l :TestLast<CR>
   nmap <silent> <leader>g :TestVisit<CR>
   " run tests in neoterm
-  let g:test#strategy = 'neoterm'
+  let g:test#strategy = 'neovim'
   " I use spinach, not cucumber!
   let g:test#ruby#cucumber#executable = 'spinach'
 
@@ -267,7 +272,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
   let g:fzf_layout = { 'window': 'enew' }
   nnoremap <silent> <C-P> :FZF<cr>
-  nnoremap <silent> <leader>a :Ag<cr>
+  nnoremap <silent> <leader>f :Ag<cr>
   augroup localfzf
     autocmd!
     autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
@@ -516,7 +521,7 @@ inoremap ;l <esc>
 nnoremap <leader><leader> <c-^>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-inoremap <c-u> <esc>viwU`.a
+inoremap <c-u> <esc>m`viwU``a
 nnoremap <c-u> m`viwU``
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel

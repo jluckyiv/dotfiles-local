@@ -111,6 +111,8 @@ augroup myfiletypes
   autocmd BufWritePre *.rb,*.ex,*.exs :%s/\s\+$//e
   autocmd FileType elixir,ruby,eruby,yaml setlocal autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab list
   autocmd FileType elixir,ruby,eruby,yaml setlocal path+=lib
+  autocmd BufWritePost *.exs silent :!mix format %
+  autocmd BufWritePost *.ex silent :!mix format %
 
   autocmd FileType elm setlocal softtabstop=4 tabstop=4 shiftwidth=4 expandtab
   autocmd BufReadPost,BufWritePost *.elm ElmMake
